@@ -9,7 +9,7 @@ class Swarm(object):
 		self.size = size
 		self.instance = {}
 		# self.instances = None
-		self.args = {}
+		# self.args = {}
 		self.code = {}
 		self.instance['ami'] = "ami-a4dc46db"
 		self.instance['init'] = ""
@@ -18,15 +18,21 @@ class Swarm(object):
 		self.instance['securityId'] = ['sg-eade92a1']
 		self.instance['key'] = 'DLNAkey'
 		self.instance['securityGroup'] = ['SSH']
-		
 
-	def set_code(self,launch, github):
-		self.code['launch'] = launch
+	def describe(self):
+		return {'instance': self.instance, 'code': self.code}
+
+	def set_code(self,launch_path, github):
+		self.code['launch'] = launch_path
 		self.code['github'] = github
+		str_n = lambda x: str(x) + "\n"
+		l = ["#!/bin/bash","git clone https://github.com/sande2jm/aws_worker.git /home/ubuntu/aws_worker","sudo apt-get update","sudo apt-get install -y python3-pip","pip3 install boto3"]
+		res = "".join(list(map(str_n, l)))
+		self.instance['init'] = res
 
 	def set_instance(self,key,init=None, role=None, ami=None, _type=None, securityId=None, securityGroup=None):
 		self.instance['ami'] = ami
-		self.instance['init'] = init
+		if init: self.instance['init'] = init
 		self.instance['role'] = role
 		self.instance['type'] = _type
 		self.instance['securityId'] = securityId

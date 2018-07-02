@@ -38,13 +38,7 @@ class SwarmTest(unittest.TestCase):
 
 		instances = sw.create()
 		hive.create_instructions(instances,"learning_rate", [])
-		
 
-
-
-
-
-role = , ami, _type, securityId, key, securityGroup
 
 if __name__ == '__main__':
 	unittest.main()
