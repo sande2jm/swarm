@@ -1,5 +1,6 @@
 from swarm import Swarm
 from hive import Hive
+
 sw = Swarm(2)
 init = """#!/bin/bash
 git clone https://github.com/sande2jm/ec2.git /home/ubuntu/ec2
@@ -16,10 +17,14 @@ key = 'DLNAkey'
 sw.set_instance(key, init=init, role=role, securityId=securityId, securityGroup=securityGroup, ami=ami, _type=_type)
 
 #instances = sw.create()
-hive = Hive({'steps': 1, 
-			'batch_size': 1, 
-			'epochs': 1, 
-			'learning_rate': 1, 
-			'drop_r': 1})
-# hive.create_instructions(instances,"learning_rate", (0.0001, 0.01))
-hive.inject_instructions()
+# hive = Hive({'steps': 1, 
+# 			'batch_size': 1, 
+# 			'epochs': 1, 
+# 			'learning_rate': 1, 
+# 			'drop_r': 1})
+# hive.connect()
+# hive.create_instructions("learning_rate", (0.0001, 0.01))
+# hive.create_instructions("learning_rate", (0.0001, 0.01), swarm=instances)
+# hive.inject_instructions()
+
+

@@ -8,10 +8,12 @@ class Hive():
 		self.ec2 = boto3.resource('ec2')
 		self.layout = layout
 		self.instructions = {}
+		self.swarm = []
 
-	def create_instructions(self,swarm,target,_range):
+	def create_instructions(self,target,_range,swarm=None):
 		start,end = _range
-		for x in swarm:
+		if swarm: self.swarm = swarm
+		for x in self.swarm:
 			self.layout[target] = random.uniform(start,end)
 			self.instructions[x.id] = self.layout
 
@@ -23,3 +25,10 @@ class Hive():
 
 	def broadcast(self, signal):
 		pass
+
+	def connect(self):
+		filters = [{'Name': 'tag:Name', 'Values': ['Swarm']}]
+		for x in self.ec2.instances.filter(Filters=filters):
+			if x.state['Name'] == 'running':
+				self.swarm.append(x)
+		print(self.swarm)
