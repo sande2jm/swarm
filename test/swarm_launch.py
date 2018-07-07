@@ -14,10 +14,10 @@ direc = "json"
 github_clone = " git clone https://github.com/sande2jm/" + direc + ".git"
 rm_repo = 'sudo rm -r ' + direc
 
-with open("swarm.yaml", 'r') as stream:
+with open("swarm/test/swarm.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
-s3.Bucket('swarm-instructions').download_file('train.json', 'train.json')
+s3.Bucket('swarm-instructions').download_file('train.json', 'swarm/test/train.json')
 
 size = 4
 swarm_name = config['instance']['name']
@@ -32,7 +32,7 @@ swarm.init(dependencies=pip_installs)
 swarm.populate()
 swarm.describe()
 
-json_input = mpu.io.read('train.json')
+json_input = mpu.io.read('swarm/test/train.json')
 splits = ({'images':json_input['images']})
 variables = ({'index': ((0,size), 'unique')})
 
