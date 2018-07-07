@@ -13,7 +13,7 @@ class Hive3():
 	def __init__(self, variable={}, static={}, split={}, bucket=None, filename=None):
 		self.s3 = boto3.resource('s3', 'us-east-1')
 		self.results = self.s3.Bucket('swarm-results')
-		self.ec2 = boto3.resource('ec2')
+		self.ec2 = boto3.resource('ec2', 'us-east-1')
 
 		self.config = {'variable': variable,
 						'static': static,
