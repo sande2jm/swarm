@@ -5,7 +5,7 @@ import sys
 class Swarm3(object):
 	def __init__(self,size=1, config=None):
 
-		self.ec2 = boto3.resource('ec2')
+		self.ec2 = boto3.resource('ec2', 'us-east-1')
 		self.size = size
 		self.config = config
 		self.locusts = []

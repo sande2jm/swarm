@@ -11,7 +11,7 @@ from .hive_helper import split_json
 
 class Hive3():
 	def __init__(self, variable={}, static={}, split={}, bucket=None, filename=None):
-		self.s3 = boto3.resource('s3')
+		self.s3 = boto3.resource('s3', 'us-east-1')
 		self.results = self.s3.Bucket('swarm-results')
 		self.ec2 = boto3.resource('ec2')
 
@@ -19,7 +19,7 @@ class Hive3():
 						'static': static,
 						'split': split}
 		self.swarm = {}
-		self.sqs = boto3.resource('sqs')
+		self.sqs = boto3.resource('sqs', 'us-east-1')
 		self.queue = self.sqs.get_queue_by_name(QueueName='swarm.fifo')
 		self.reports = {}
 		self.client = boto3.client(
