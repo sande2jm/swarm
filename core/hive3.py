@@ -55,7 +55,7 @@ class Hive3():
 			print(x,v)
 		time.sleep(.5)
 
-	def gather(self,size=0, group=None): 
+	def gather(self,size=0, group=None, swarm=None): 
 		while len(self.swarm) < size:
 			l = []
 			filters = [{'Name': 'tag:Name', 'Values': [group]}]

@@ -25,6 +25,8 @@ class Swarm3(object):
 		for x in self.ec2.instances.filter(Filters=filters):
 			if x and x.state['Name'] == 'running':
 				self.existing += 1
+				self.locusts.append(x)
+
 
 	def describe(self):
 		print("Swarm Created")
