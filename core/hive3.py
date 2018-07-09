@@ -141,8 +141,8 @@ class Hive3():
 			stdin, stdout, stderr = client.exec_command(cmd)
 			print("Available ")
 			ret = True
-		except Exception e:
-			print('Unavailable, ' e)
+		except Exception as e:
+			print('Unavailable, ', e)
 			ret = False
 		return ret
 
