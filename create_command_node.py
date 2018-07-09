@@ -1,6 +1,5 @@
 
-from core.swarm3 import Swarm3
-from core.hive3 import Hive3
+from swarm_leader import Swarm_Leader
 import boto3
 import time
 import yaml
@@ -18,8 +17,12 @@ with open("command.yaml", 'r') as stream:
 
 size = 1
 swarm_name = config['instance']['name']
-swarm = Swarm3(size=size,config=config['instance'])
+leader = Swarm_Leader(size=size,config=config['instance'])
 pip_installs = [
+"#!/bin/bash", 
+"sudo apt-get update",
+"sudo apt-get install -y python3-pip",
+"pip3 install boto3",
 'pip3 install mpu', 
 'pip3 install joblib',
 'pip3 install pillow', 
@@ -28,17 +31,17 @@ pip_installs = [
 'sudo python3 -m pip install paramiko']
 
 
-swarm.init(dependencies=pip_installs)
-swarm.populate()
-swarm.describe()
-print(swarm.locusts)
+leader.init(dependencies=pip_installs)
+leader.populate()
+leader.describe()
+print(leader.locusts)
 
-hive = Hive3()
-hive.gather(size = 1,group='swarm-leader')
-print(hive.swarm.items())
-hive.inject_code(rm_repo)
-hive.inject_code(github_clone)
-for x,params in hive.swarm.items():
+
+leader.gather(size = 1,group='swarm-leader')
+print(leader.swarm.items())
+leader.inject_code(rm_repo)
+leader.inject_code(github_clone)
+for x,params in leader.swarm.items():
 	scp_pem_key = 'scp -i ../DLNAkey.pem ../DLNAkey.pem ubuntu@'+ params['public_dns_name']+':swarm/'
 	call(scp_pem_key.split(" "))
 	ssh = "ssh -i ../DLNAkey.pem ubuntu@" + params['public_dns_name']
