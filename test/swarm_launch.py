@@ -10,7 +10,7 @@ import boto3
 
 s3 = boto3.resource('s3')
 launch = "launch.py"
-direc = "json"
+direc = "worker"
 github_clone = " git clone https://github.com/sande2jm/" + direc + ".git"
 rm_repo = 'sudo rm -r ' + direc
 

@@ -7,8 +7,8 @@ import mpu.io
 
 
 launch = "launch.py"
-direc = "json"
-github_clone = " git clone https://github.com/sande2jm/" + 'swarm' + ".git"
+direc = "swarm"
+github_clone = " git clone https://github.com/sande2jm/" + direc + ".git"
 rm_repo = 'sudo rm -r ' + direc
 
 with open("command.yaml", 'r') as stream:
