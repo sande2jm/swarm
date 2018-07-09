@@ -5,7 +5,7 @@ instance:
   init: None
   role: arn:aws:iam::400029180276:instance-profile/swarm_access
   region: us-east-1a
-  type: t2.micro
+  type: t2.small
   securityId: ['sg-eade92a1']
   key: DLNAkey
   securityGroup: ['SSH']

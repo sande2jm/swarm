@@ -1,5 +1,6 @@
 
-from .swarm3 import Swarm3
+from core.swarm3 import Swarm3
+from core.hive3 import Hive3
 import boto3
 import time
 import yaml
@@ -29,11 +30,11 @@ pip_installs = [
 swarm.init(dependencies=pip_installs)
 swarm.populate()
 swarm.describe()
-print(dir(swarm.locusts[0]))
+print(swarm.locusts)
 
-# hive = Hive3()
-#hive.gather(swarm=swarm.locusts)
-# hive.generate_swarm_parameters()
-# hive.inject_behavior([github_clone])
-
-print("ssh -i DLNAkey.pem ubuntu@" + swarm.locusts[0].public_dns_name)
+hive = Hive3()
+hive.gather(size = 1,group='swarm-leader')
+print(hive.swarm.items())
+hive.inject_code(github_clone)
+for x,params in hive.swarm.items():
+	print("ssh -i DLNAkey.pem ubuntu@" + params['public_dns_name'])

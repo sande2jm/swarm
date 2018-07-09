@@ -55,7 +55,7 @@ class Hive3():
 			print(x,v)
 		time.sleep(.5)
 
-	def gather(self,size=0, group=None, swarm=None): 
+	def gather(self,size=0, group=None): 
 		while len(self.swarm) < size:
 			l = []
 			filters = [{'Name': 'tag:Name', 'Values': [group]}]
@@ -127,22 +127,22 @@ class Hive3():
 			repeat = False	
 			for x,params in self.swarm.items():
 				print(x, cmd)
-				if self.connect_ssh(params['public_dns_name'],cmd):
+				if not self.connect_ssh(params['public_dns_name'],cmd):
 					repeat = True
 				time.sleep(.2)			
 
 	def connect_ssh(self,public_dns, cmd):
 		try:
-			key = paramiko.RSAKey.from_private_key_file("DLNAkey.pem")
+			key = paramiko.RSAKey.from_private_key_file("../DLNAkey.pem")
 			client = paramiko.SSHClient()
 			client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 			client.connect(hostname=public_dns, username="ubuntu", pkey=key)
 			stdin, stdout, stderr = client.exec_command(cmd)
 			print("Available ")
-			ret = False
+			ret = True
 		except:
 			print('Unavailable')
-			ret = True
+			ret = False
 		return ret
 
 

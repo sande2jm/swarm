@@ -7,21 +7,22 @@ import yaml
 import mpu.io
 import boto3
 
+with open("swarm/test/swarm.yaml", 'r') as stream:
+	config = yaml.load(stream)
+
 
 s3 = boto3.resource('s3')
 launch = "launch.py"
-direc = "worker"
+direc = config['name']
 github_clone = " git clone https://github.com/sande2jm/" + direc + ".git"
 rm_repo = 'sudo rm -r ' + direc
 
-with open("swarm/test/swarm.yaml", 'r') as stream:
-	config = yaml.load(stream)
 
 s3.Bucket('swarm-instructions').download_file('train.json', 'swarm/test/train.json')
 
 size = 4
-swarm_name = config['instance']['name']
-swarm = Swarm3(size=size,config=config['instance'])
+swarm_name = config['name']
+swarm = Swarm3(size=size,config=config)
 pip_installs = [
 'pip3 install mpu', 
 'pip3 install joblib',
