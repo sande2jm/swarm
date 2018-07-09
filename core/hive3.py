@@ -134,7 +134,7 @@ class Hive3():
 
 	def connect_ssh(self,public_dns, cmd):
 		try:
-			key = paramiko.RSAKey.from_private_key_file("../DLNAkey.pem")
+			key = paramiko.RSAKey.from_private_key_file("DLNAkey.pem")
 			client = paramiko.SSHClient()
 			client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 			client.connect(hostname=public_dns, username="ubuntu", pkey=key)
