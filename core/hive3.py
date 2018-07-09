@@ -10,7 +10,7 @@ import mpu.io
 from .hive_helper import split_json 
 
 class Hive3():
-	def __init__(self, variable={}, static={}, split={}, bucket=None, filename=None):
+	def __init__(self, variable={}, static={}, split={} ):
 		self.s3 = boto3.resource('s3', 'us-east-1')
 		self.results = self.s3.Bucket('swarm-results')
 		self.ec2 = boto3.resource('ec2', 'us-east-1')
@@ -24,6 +24,7 @@ class Hive3():
 		self.reports = {}
 		self.client = boto3.client(
 		    "sns",region_name="us-east-1")
+
 
 	def monitor(self):
 		start = time.clock()

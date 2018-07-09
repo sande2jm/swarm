@@ -5,6 +5,7 @@ import boto3
 import time
 import yaml
 import mpu.io
+from subprocess import call
 
 
 launch = "launch.py"
@@ -35,6 +36,10 @@ print(swarm.locusts)
 hive = Hive3()
 hive.gather(size = 1,group='swarm-leader')
 print(hive.swarm.items())
+hive.inject_code(rm_repo)
 hive.inject_code(github_clone)
 for x,params in hive.swarm.items():
-	print("ssh -i DLNAkey.pem ubuntu@" + params['public_dns_name'])
+	scp_pem_key = 'scp -i ../DLNAkey.pem ../DLNAkey.pem ubuntu@'+ params['public_dns_name']+':swarm/'
+	call(scp_pem_key.split(" "))
+	ssh = "ssh -i ../DLNAkey.pem ubuntu@" + params['public_dns_name']
+	call(ssh.split(" "))	
