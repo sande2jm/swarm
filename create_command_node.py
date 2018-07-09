@@ -39,7 +39,7 @@ print(hive.swarm.items())
 hive.inject_code(rm_repo)
 hive.inject_code(github_clone)
 for x,params in hive.swarm.items():
-	scp_pem_key = 'scp -i ../DLNAkey.pem ../DLNAkey.pem ubuntu@'+ params['public_dns_name']+':swarm/test'
+	scp_pem_key = 'scp -i ../DLNAkey.pem ../DLNAkey.pem ubuntu@'+ params['public_dns_name']+':swarm/'
 	call(scp_pem_key.split(" "))
 	ssh = "ssh -i ../DLNAkey.pem ubuntu@" + params['public_dns_name']
 	call(ssh.split(" "))	
