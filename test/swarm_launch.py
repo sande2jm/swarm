@@ -37,7 +37,7 @@ swarm.describe()
 # splits = ({'images':json_input['images']})
 # variables = ({'index': ((0,size), 'unique')})
 
-hive = Hive3(split=splits, variable=variables)
+hive = Hive3()
 hive.gather(size=size,group=swarm_name)
 # hive.generate_swarm_parameters()
 # hive.inject_behavior([rm_repo, github_clone])
