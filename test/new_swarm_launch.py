@@ -8,6 +8,7 @@ with open("swarm/test/new_swarm.yaml", 'r') as stream:
 
 direc = config['worker_direc_name']
 github_clone = 'get clone https://github.com/'+ config['github_account'] + '/' + direc + '.git'
+rm_repo = 'sudo rm -r ' + direc
 launch = config['launch']
 aws_resources = config['aws_resources']
 ec2_config = config['ec2_config']
