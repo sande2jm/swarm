@@ -1,26 +1,12 @@
 ---
 #a description of aws ec2 instance
-ec2_config:
-  ami: ami-a4dc46db
-  init: None
-  role: arn:aws:iam::400029180276:instance-profile/s3_sqs_full
-  region: us-east-1a
-  type: t2.micro
-  securityId: ['sg-eade92a1']
-  key: DLNAkey
-  securityGroup: ['SSH']
-  name: worker
-  size: &size 4
-
-worker_direc_name: worker
-launch: launch.py
-github_account: sande2jm
-aws_resources: None
-statics: None
-variables: 
-  index: 
-   range: !!python/tuple [0,*size]
-   type: unique
-splits:
-
+ami: ami-a4dc46db
+init: None
+role: arn:aws:iam::400029180276:instance-profile/s3_sqs_full
+region: us-east-1a
+type: t2.micro
+securityId: ['sg-eade92a1']
+key: DLNAkey
+securityGroup: ['SSH']
+name: worker
 

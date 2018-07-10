@@ -15,6 +15,7 @@ class Swarm3(object):
 		"""Python bare minimum pre-config enviornment"""
 
 		cmds = ["#!/bin/bash", "sudo apt-get update","sudo apt-get install -y python3-pip","pip3 install boto3"]
+		cmds += dependencies
 		cmds = "".join(list(map(lambda x: str(x) + "\n", cmds)))
 		print(cmds)
 		self.config['init'] = cmds
