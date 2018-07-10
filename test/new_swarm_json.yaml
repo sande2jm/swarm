@@ -39,11 +39,9 @@ aws_services_info:
 statics: !!null
 variables: 
   index: 
-   range: !!python/tuple [0,*size]
-   type: unique
+   values: !!python/tuple [0,*size, unique]
 splits:
   filename: train.json
-statics: !!null
 
 
 
