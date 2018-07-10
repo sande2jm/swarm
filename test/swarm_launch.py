@@ -7,7 +7,7 @@ import yaml
 import mpu.io
 import boto3
 
-with open("swarm/test/swarm.yaml", 'r') as stream:
+with open("swarm/test/worker_yamls/swarm.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 
@@ -16,6 +16,7 @@ launch = "launch.py"
 direc = config['name']
 github_clone = " git clone https://github.com/sande2jm/" + direc + ".git"
 rm_repo = 'sudo rm -r ' + direc
+
 
 
 # s3.Bucket('swarm-instructions').download_file('train.json', 'swarm/test/train.json')

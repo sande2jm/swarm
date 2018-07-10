@@ -5,7 +5,7 @@ import boto3
 import mpu
 import yaml
 
-with open("swarm/test/worker_yamls/new_swarm_math_func.yaml", 'r') as stream:
+with open("swarm/test/new_swarm_math_func.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 direc = config['worker_direc_name']
