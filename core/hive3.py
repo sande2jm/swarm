@@ -94,12 +94,17 @@ class Hive3():
 			time.sleep(.5)
 
 	def generate_swarm_parameters(self):
+		
 		size = len(self.swarm)
-		splits = split_json(self.config['split']['images'], size)
+		if len(self.config['split']) > 0:
+			splits = split_json(self.config['split']['images'], size)
 		i = 0
 		for x,params in self.swarm.items():
+			if len(self.config['static']) > 0:
 			self.generate_static_parameters(params)
-			self.generate_variable_parameters(params,i)
+			if len(self.config['variable']) > 0:
+				self.generate_variable_parameters(params,i)
+			if len(self.config['split']) > 0:
 			self.generate_split_parameters(params,splits[i],x)
 			i += 1
 
