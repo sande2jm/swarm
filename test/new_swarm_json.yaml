@@ -26,16 +26,16 @@ worker_direc_name: json
 launch: launch.py
 github_account: sande2jm
 aws_services_info: 
-  - s3:
-      bucket: swarm-instructions
-  - sqs:
-      name: 'swarm.fifo'
-      region: us-east-1
-  - dynamodb:
-      name: test
-      region: us-east-1
-  - sns:
-      region: us-east-1
+  s3:
+    bucket: swarm-instructions
+  sqs:
+    name: 'swarm.fifo'
+    region: us-east-1
+  dynamodb:
+    name: test
+    region: us-east-1
+  sns:
+    region: us-east-1
 statics: !!null
 variables: 
   index: 
@@ -44,7 +44,7 @@ variables:
 splits:
   file_name: train.json
 statics: !!null
- 
+
 
 
 
