@@ -51,21 +51,23 @@ class Hive3():
 		    PhoneNumber="+17033807996",
 		    Message="Swarm Done"
 		)
-	def user_input():
+	def user_input(self):
 		while True:
 			response = input()
 			if response == 'show':
-				display()
+				self.display()
 			elif response == 'pause':
-				state[0] = 'pause'
+				self.state[0] = 'pause'
 			elif response == 'start':
-				state[0] = 'running'
+				self.state[0] = 'running'
 			elif response == 'restart':
-				state[0] = 'restart'
+				self.state[0] = 'restart'
 			elif response == 'exit':
-				state[0] = 'exit'
+				self.state[0] = 'exit'
 			with open('state.txt', 'w') as f:
 				f.write(state[0])
+			for x,params in self.swarm.items():
+				state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':worker/'
 		print("Done")
 
 	def display(self):
