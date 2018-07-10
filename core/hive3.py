@@ -128,7 +128,7 @@ class Hive3():
 
 	def inject_parameters(self):
 		"""Upload the instructions to AWS S3"""
-		print(self.swarm.values)
+		print(list(self.swarm.values))
 		if False:
 			with open('parameters.txt', 'w') as outfile:
 				json.dump(self.swarm, outfile)
