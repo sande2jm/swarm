@@ -17,9 +17,9 @@ aws_services_info = config['aws_services_info']
 
 ec2_config = config['ec2_config']
 
-statics = config['statics']
-variables = config['variables']
-splits = config['splits']
+# statics = config['statics']
+# variables = config['variables']
+# splits = config['splits']
 
 s3_info = aws_services_info['s3']
 s3 = boto3.resource('s3')
@@ -37,6 +37,7 @@ swarm.describe()
 json_input = mpu.io.read('swarm/test/'+splits['filename'])
 splits = ({'images':json_input['images']})
 variables = ({'index': ((0,size), 'unique')})
+statics = {}
 
 hive = Hive3(variable=variables, static=statics, split=splits, direc=direc)
 hive.gather(size=size,group=swarm_name)
