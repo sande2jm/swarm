@@ -12,7 +12,7 @@ direc = "swarm"
 github_clone = " git clone https://github.com/sande2jm/" + direc + ".git"
 rm_repo = 'sudo rm -r ' + direc
 
-with open("command.yaml", 'r') as stream:
+with open("swarm_leader.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 size = 1
