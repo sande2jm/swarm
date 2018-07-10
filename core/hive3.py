@@ -185,7 +185,7 @@ class Hive3():
 			progress = '{}/{}'.format(len(finished),len(remaining))
 			for k,v in self.swarm.items():
 				if not k in finished:
-					print(k, cmd, progress)
+					#print(k, cmd, progress)
 					try:
 						key = paramiko.RSAKey.from_private_key_file("swarm/DLNAkey.pem")
 						client = paramiko.SSHClient()
@@ -194,6 +194,6 @@ class Hive3():
 						stdin, stdout, stderr = client.exec_command(cmd)
 					except:
 						print('Didnt work') 
-			time.sleep(1)		
+			time.sleep(.3)		
 
 
