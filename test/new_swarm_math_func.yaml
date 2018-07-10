@@ -1,0 +1,45 @@
+---
+#a description of aws ec2 instance
+ec2_config:
+  ami: ami-a4dc46db
+  dependencies: 
+    - "#!/bin/bash" 
+    - sudo apt-get update
+    - sudo apt-get install -y python3-pip
+    - pip3 install boto3
+    - pip3 install mpu
+    - pip3 install joblib
+    - pip3 install pillow
+    - pip3 install numpy
+    - pip3 install --upgrade pip
+    - sudo python3 -m pip install paramiko
+  role: arn:aws:iam::400029180276:instance-profile/s3_sqs_full
+  region: us-east-1a
+  type: t2.micro
+  securityId: ['sg-eade92a1']
+  key: DLNAkey
+  securityGroup: ['SSH']
+  name: &name math_func
+  size: &size 4
+
+worker_direc_name: $name
+launch: launch.py
+github_account: sande2jm
+aws_services_info: 
+  s3:
+    bucket: swarm-instructions
+  sqs:
+    name: 'swarm.fifo'
+    region: us-east-1
+  dynamodb:
+    name: test
+    region: us-east-1
+  sns:
+    region: us-east-1
+statics: {work_load: 10000}
+variables: { random_num: !!python/tuple [0,*size,continuous_random)]}
+splits: {json: train.json}
+
+
+
+
