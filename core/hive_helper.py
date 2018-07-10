@@ -4,8 +4,8 @@ def split_json(data, size):
 		transform = {}
 		n = int(len(data)/size)
 		if i == size - 1:
-			transform.update({'images':data[i*n:]})
+			transform.update({'json':data[i*n:]})
 		else:
-			transform.update({'images':data[i*n:(i*n)+n]})
+			transform.update({'json':data[i*n:(i*n)+n]})
 		splits.append(transform)
 	return splits
