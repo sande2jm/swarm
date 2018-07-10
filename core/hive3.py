@@ -24,7 +24,8 @@ class Hive3():
 		self.reports = {}
 		self.client = boto3.client(
 		    "sns",region_name="us-east-1")
-
+		self.t1 = Thread(target=user_input, daemon=True)
+		self.t1.start()
 
 	def monitor(self):
 		start = time.clock()
@@ -40,7 +41,7 @@ class Hive3():
 					d.add(message['id'])
 
 				x.delete()
-			self.display()
+			#self.display()
 		end = time.clock()
 		print(end-start)
 
@@ -49,6 +50,22 @@ class Hive3():
 		    PhoneNumber="+17033807996",
 		    Message="Swarm Done"
 		)
+	def user_input():
+	while True:
+		response = input()
+		if response == 'show':
+			display()
+		elif response == 'pause':
+			state[0] = 'pause'
+		elif response == 'start':
+			state[0] = 'running'
+		elif response == 'restart':
+			state[0] = 'restart'
+		elif response == 'exit':
+			state[0] = 'exit'
+		with open('state.txt', 'w') as f:
+			f.write(state[0])
+	print("Done")
 
 	def display(self):
 		print("Swarm Report")
