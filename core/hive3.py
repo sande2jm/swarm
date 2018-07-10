@@ -105,8 +105,7 @@ class Hive3():
 
 	def generate_variable_parameters(self, params,i):
 		for k2,v2 in self.config['variable'].items():
-			num_range, specs = v2
-			a,b = num_range
+			a,b, specs = v2
 			if specs == 'unique':
 				params.update({k2:i})
 			elif specs == 'continuous_random':
@@ -128,14 +127,14 @@ class Hive3():
 
 	def inject_parameters(self):
 		"""Upload the instructions to AWS S3"""
-
-		with open('parameters.txt', 'w') as outfile:
-			json.dump(self.swarm, outfile)
-		self.s3.meta.client.upload_file('parameters.txt', 'swarm-instructions', 'parameters.txt')
-		call(['rm', 'parameters.txt'])
-		for x,params in self.swarm.items():
-			file_name = params['images']
-			self.s3.meta.client.upload_file(file_name, 'swarm-instructions', "data/"+file_name)
+		if len(self.swarm.values[0]) != 0:
+			with open('parameters.txt', 'w') as outfile:
+				json.dump(self.swarm, outfile)
+			self.s3.meta.client.upload_file('parameters.txt', 'swarm-instructions', 'parameters.txt')
+			call(['rm', 'parameters.txt'])
+			for x,params in self.swarm.items():
+				file_name = params['images']
+				self.s3.meta.client.upload_file(file_name, 'swarm-instructions', "data/"+file_name)
 
 	def inject_behavior(self, cmds):
 		"""Setup all necessary dependencies for locust behavior"""

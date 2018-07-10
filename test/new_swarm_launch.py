@@ -18,7 +18,7 @@ aws_services_info = config['aws_services_info']
 ec2_config = config['ec2_config']
 
 # statics = config['statics']
-# variables = config['variables']
+variables = config['variables']
 # splits = config['splits']
 
 s3_info = aws_services_info['s3']
@@ -36,7 +36,7 @@ swarm.describe()
 
 json_input = mpu.io.read('swarm/test/'+'train.json')
 splits = ({'images':json_input['images']})
-variables = ({'index': ((0,size), 'unique')})
+# variables = ({'index': ((0,size), 'unique')})
 statics = {}
 
 hive = Hive3(variable=variables, static=statics, split=splits, direc=direc)

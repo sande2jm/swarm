@@ -29,12 +29,10 @@ aws_resources: !!null
 statics: 
 variables: 
   index: 
-   range: !!python/tuple [0,*size]
-   type: unique
+   values: !!python/tuple [0,*size, unique]
 splits:
   images:
     file_name: train.json
- 
 
 
 
