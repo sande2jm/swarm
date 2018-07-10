@@ -163,7 +163,7 @@ class Hive3():
 				if not k in finished:
 					print(k, cmd, progress)
 					try:
-						key = paramiko.RSAKey.from_private_key_file("DLNAkey.pem")
+						key = paramiko.RSAKey.from_private_key_file("swarm/DLNAkey.pem")
 						client = paramiko.SSHClient()
 						client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 						client.connect(hostname=v['public_dns_name'], username="ubuntu", pkey=key, timeout=2)
