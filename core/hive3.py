@@ -56,19 +56,21 @@ class Hive3():
 			response = input()
 			if response == 'show':
 				self.display()
-			elif response == 'pause':
-				self.state[0] = 'pause'
-			elif response == 'start':
-				self.state[0] = 'running'
-			elif response == 'restart':
-				self.state[0] = 'restart'
-			elif response == 'exit':
-				self.state[0] = 'exit'
-			with open('state.txt', 'w') as f:
-				f.write(self.state[0])
-			for x,params in self.swarm.items():
-				state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':worker/'
-				call(state_scp.split(" "))
+			else:
+				if response == 'pause':
+					self.state[0] = 'pause'
+				elif response == 'start':
+					self.state[0] = 'running'
+				elif response == 'restart':
+					self.state[0] = 'restart'
+				elif response == 'exit':
+					self.state[0] = 'exit'
+				with open('state.txt', 'w') as f:
+					f.write(self.state[0])
+				for x,params in self.swarm.items():
+					state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':worker/'
+					call(state_scp.split(" "))
+
 		print("Done")
 
 	def display(self):
