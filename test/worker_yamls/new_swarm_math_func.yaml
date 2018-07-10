@@ -37,7 +37,7 @@ aws_services_info:
   sns:
     region: us-east-1
 statics: {work_load: 10000}
-variables: { random_num: (0, *size, continuous_random)}
+variables: { random_num: !!python/tuple [0,*size,continuous_random]}
 splits: {json: train.json}
 
 
