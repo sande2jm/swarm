@@ -14,6 +14,7 @@ class Swarm3(object):
 	def init(self,dependencies=None):
 		"""Python bare minimum pre-config enviornment"""
 		cmds = "".join(list(map(lambda x: str(x) + "\n", dependencies)))
+		print(cmds)
 		self.config['init'] = cmds
 
 	def head_count(self):
