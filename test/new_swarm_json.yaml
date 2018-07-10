@@ -25,18 +25,27 @@ ec2_config:
 worker_direc_name: json
 launch: launch.py
 github_account: sande2jm
-aws_resources: 
+aws_services_info: 
   - s3:
       bucket: swarm-instructions
+  - sqs:
+      name: 'swarm.fifo'
+      region: us-east-1
+  - dynamodb:
+      name: test
+      region: us-east-1
+  - sns:
+      region: us-east-1
 statics: !!null
 variables: 
   index: 
    range: !!python/tuple [0,*size]
    type: unique
 splits:
-  images:
-    file_name: train.json
-statics: !!null 
+  file_name: train.json
+statics: !!null
+
+--- 
 
 
 
