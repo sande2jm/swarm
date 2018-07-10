@@ -42,7 +42,7 @@ variables:
    range: !!python/tuple [0,*size]
    type: unique
 splits:
-  file_name: train.json
+  filename: train.json
 statics: !!null
 
 
