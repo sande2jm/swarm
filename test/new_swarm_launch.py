@@ -1,6 +1,8 @@
 from context import core
 from core import Swarm3
 from core import Hive3
+import boto3
+import mpu
 import yaml
 
 with open("swarm/test/new_swarm_json.yaml", 'r') as stream:
