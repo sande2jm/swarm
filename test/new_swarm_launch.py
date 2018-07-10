@@ -37,7 +37,7 @@ swarm.populate()
 swarm.describe()
 
 json_input = mpu.io.read('swarm/test/'+splits['json'])
-splits['json'] = json_input
+splits = {'json':json_input['images']}
 # splits = ({'images':json_input['images']})
 # variables = ({'index': ((0,size), 'unique')})
 # statics = {}
