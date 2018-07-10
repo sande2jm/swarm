@@ -27,6 +27,7 @@ class Hive3():
 		    "sns",region_name="us-east-1")
 		self.t1 = Thread(target=self.user_input, daemon=True)
 		self.t1.start()
+		self.state = ['running']
 
 	def monitor(self):
 		start = time.clock()
@@ -64,9 +65,10 @@ class Hive3():
 			elif response == 'exit':
 				self.state[0] = 'exit'
 			with open('state.txt', 'w') as f:
-				f.write(state[0])
+				f.write(self.state[0])
 			for x,params in self.swarm.items():
 				state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':worker/'
+				call(scp_pem_key.split(" "))
 		print("Done")
 
 	def display(self):
