@@ -26,9 +26,9 @@ worker_direc_name: worker
 launch: launch.py
 github_account: sande2jm
 aws_services_info: !!null
-statics: 
-variables: 
-splits:
+statics: {}
+variables: {} 
+splits: {}
 
 
 
