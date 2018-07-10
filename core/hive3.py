@@ -11,10 +11,11 @@ from .hive_helper import split_json
 from threading import Thread
 
 class Hive3():
-	def __init__(self, variable={}, static={}, split={} ):
+	def __init__(self, variable={}, static={}, split={}, direc = None ):
 		self.s3 = boto3.resource('s3', 'us-east-1')
 		self.results = self.s3.Bucket('swarm-results')
 		self.ec2 = boto3.resource('ec2', 'us-east-1')
+		self.direc = direc
 
 		self.config = {'variable': variable,
 						'static': static,
@@ -68,7 +69,7 @@ class Hive3():
 				with open('state.txt', 'w') as f:
 					f.write(self.state[0])
 				for x,params in self.swarm.items():
-					state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':json/'
+					state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':' + self.direc + '/'
 					call(state_scp.split(" "))
 
 		print("Done")

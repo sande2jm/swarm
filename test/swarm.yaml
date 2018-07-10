@@ -8,5 +8,5 @@ type: t2.micro
 securityId: ['sg-eade92a1']
 key: DLNAkey
 securityGroup: ['SSH']
-name: json
+name: worker
 
