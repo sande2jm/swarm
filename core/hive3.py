@@ -105,6 +105,7 @@ class Hive3():
 
 	def generate_variable_parameters(self, params,i):
 		for k2,v2 in self.config['variable'].items():
+			print(v2)
 			a,b, specs = v2
 			if specs == 'unique':
 				params.update({k2:i})
