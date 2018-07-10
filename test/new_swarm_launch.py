@@ -5,7 +5,7 @@ import boto3
 import mpu
 import yaml
 
-with open("swarm/test/new_swarm.yaml", 'r') as stream:
+with open("swarm/test/new_swarm_math_func.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 direc = config['worker_direc_name']
@@ -21,10 +21,12 @@ statics = config['statics']
 variables = config['variables']
 splits = config['splits']
 
-# s3_info = aws_services_info['s3']
-# s3 = boto3.resource('s3')
+# for k,v in config.items():
+# 	print(k, v)
+s3_info = aws_services_info['s3']
+s3 = boto3.resource('s3')
 
-# s3.Bucket(s3_info['bucket']).download_file('train.json', 'swarm/test/train.json')
+s3.Bucket(s3_info['bucket']).download_file(splits['json'], 'swarm/test/'+splits['json'])
 
 size = ec2_config['size']
 swarm_name = ec2_config['name']
@@ -34,7 +36,8 @@ swarm.init(dependencies=ec2_config['dependencies'])
 swarm.populate()
 swarm.describe()
 
-# json_input = mpu.io.read('swarm/test/'+'train.json')
+json_input = mpu.io.read('swarm/test/'+splits['json'])
+splits['json'] = json_input
 # splits = ({'images':json_input['images']})
 # variables = ({'index': ((0,size), 'unique')})
 # statics = {}
