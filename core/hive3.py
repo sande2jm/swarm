@@ -51,21 +51,21 @@ class Hive3():
 		    Message="Swarm Done"
 		)
 	def user_input():
-	while True:
-		response = input()
-		if response == 'show':
-			display()
-		elif response == 'pause':
-			state[0] = 'pause'
-		elif response == 'start':
-			state[0] = 'running'
-		elif response == 'restart':
-			state[0] = 'restart'
-		elif response == 'exit':
-			state[0] = 'exit'
-		with open('state.txt', 'w') as f:
-			f.write(state[0])
-	print("Done")
+		while True:
+			response = input()
+			if response == 'show':
+				display()
+			elif response == 'pause':
+				state[0] = 'pause'
+			elif response == 'start':
+				state[0] = 'running'
+			elif response == 'restart':
+				state[0] = 'restart'
+			elif response == 'exit':
+				state[0] = 'exit'
+			with open('state.txt', 'w') as f:
+				f.write(state[0])
+		print("Done")
 
 	def display(self):
 		print("Swarm Report")
