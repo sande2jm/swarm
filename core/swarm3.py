@@ -13,10 +13,7 @@ class Swarm3(object):
 
 	def init(self,dependencies=None):
 		"""Python bare minimum pre-config enviornment"""
-
-		cmds = ["#!/bin/bash", "sudo apt-get update","sudo apt-get install -y python3-pip","pip3 install boto3"]
-		cmds += dependencies
-		cmds = "".join(list(map(lambda x: str(x) + "\n", cmds)))
+		cmds = "".join(list(map(lambda x: str(x) + "\n", dependencies)))
 		self.config['init'] = cmds
 
 	def head_count(self):

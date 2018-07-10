@@ -18,7 +18,7 @@ splits = config['splits']
 
 size = ec2_config['size']
 swarm_name = ec2_config['name']
-swarm = Swarm3(size=size,config=config)
+swarm = Swarm3(size=size,config=ec2_config)
 
 swarm.init(dependencies=ec2_config['dependencies'])
 swarm.populate()
