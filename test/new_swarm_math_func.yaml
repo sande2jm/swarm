@@ -19,7 +19,7 @@ ec2_config:
   securityId: ['sg-eade92a1']
   key: DLNAkey
   securityGroup: ['SSH']
-  name: $name math_func
+  name: &name math_func
   size: &size 4
 
 worker_direc_name: $name
