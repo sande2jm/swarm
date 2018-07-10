@@ -30,6 +30,7 @@ class Swarm3(object):
 		print('size: ',self.size)
 		print('name: ', self.config['name'])
 		print('type: ', self.config['type'])
+		print('role: ', self.config['role'])
 		print(self.size - self.existing, "new locusts created")
 		print()
 				

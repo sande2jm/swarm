@@ -13,7 +13,7 @@ ec2_config:
     - pip3 install numpy
     - pip3 install --upgrade pip
     - sudo python3 -m pip install paramiko
-  role: arn:aws:iam::400029180276:instance-profile/s3_sqs_full
+  role: arn:aws:iam::400029180276:instance-profile/worker_full_access
   region: us-east-1a
   type: t2.micro
   securityId: ['sg-eade92a1']
