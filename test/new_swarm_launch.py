@@ -7,7 +7,7 @@ with open("swarm/test/new_swarm.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 direc = config['worker_direc_name']
-github_clone = 'get clone https://github.com/'+ config['github_account'] + '/' + direc + '.git'
+github_clone = 'git clone https://github.com/'+ config['github_account'] + '/' + direc + '.git'
 rm_repo = 'sudo rm -r ' + direc
 launch = config['launch']
 aws_resources = config['aws_resources']
