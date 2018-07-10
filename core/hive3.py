@@ -69,6 +69,7 @@ class Hive3():
 			for x,params in self.swarm.items():
 				state_scp = 'scp -i swarm/DLNAkey.pem state.txt ubuntu@'+ params['public_dns_name']+':worker/'
 				call(state_scp.split(" "))
+				call("yes")
 		print("Done")
 
 	def display(self):
