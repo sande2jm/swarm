@@ -97,7 +97,7 @@ class Hive3():
 		
 		size = len(self.swarm)
 		if len(self.config['split']) > 0:
-			splits = split_json(self.config['split']['images'], size)
+			splits = split_json(self.config['split']['json'], size)
 		i = 0
 		for x,params in self.swarm.items():
 			if len(self.config['static']) > 0:
