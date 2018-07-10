@@ -25,7 +25,7 @@ class Hive3():
 		self.reports = {}
 		self.client = boto3.client(
 		    "sns",region_name="us-east-1")
-		self.t1 = Thread(target=user_input, daemon=True)
+		self.t1 = Thread(target=self.user_input, daemon=True)
 		self.t1.start()
 
 	def monitor(self):
