@@ -34,7 +34,7 @@ swarm.init(dependencies=ec2_config['dependencies'])
 swarm.populate()
 swarm.describe()
 
-json_input = mpu.io.read('swarm/test/'+splits['filename'])
+json_input = mpu.io.read('swarm/test/'+'train.json')
 splits = ({'images':json_input['images']})
 variables = ({'index': ((0,size), 'unique')})
 statics = {}
