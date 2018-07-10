@@ -44,6 +44,7 @@ hive.gather(size=size,group=swarm_name)
 hive.inject_code(rm_repo)
 hive.inject_code(github_clone)
 hive.broadcast('python3 worker/launch.py')
+print("Waiting For Leader... ")
 hive.monitor()
 
 
