@@ -38,8 +38,7 @@ aws_services_info:
     region: us-east-1
 statics: !!null
 variables: 
-  index: 
-   values: !!python/tuple [0,*size, unique]
+  index: !!python/tuple [0,*size, unique]
 splits:
   filename: train.json
 
