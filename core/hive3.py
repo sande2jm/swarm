@@ -36,9 +36,9 @@ class Hive3():
 			for x in self.queue.receive_messages(MaxNumberOfMessages=10):
 				message = json.loads(x.body)
 				if message['message'] == 'working':
-					self.reports.update({message['id']:[message['progress'], message['state']]})
+					self.reports.update({message['id']:(message['progress'], message['state'])})
 				elif message['message']=='complete':
-					self.reports.update({message['id']:[1.0, message['state']]})
+					self.reports.update({message['id']:(1.0, message['state'])})
 					d.add(message['id'])
 
 				x.delete()
