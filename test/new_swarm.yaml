@@ -28,11 +28,8 @@ github_account: sande2jm
 aws_resources: !!null
 statics: 
 variables: 
-  index: 
-   values: !!python/tuple [0,*size, unique]
 splits:
-  images:
-    file_name: train.json
+
 
 
 

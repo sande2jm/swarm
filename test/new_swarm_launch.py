@@ -5,7 +5,7 @@ import boto3
 import mpu
 import yaml
 
-with open("swarm/test/new_swarm_json.yaml", 'r') as stream:
+with open("swarm/test/new_swarm.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 direc = config['worker_direc_name']
@@ -43,8 +43,7 @@ hive = Hive3(variable=variables, static=statics, split=splits, direc=direc)
 hive.gather(size=size,group=swarm_name)
 hive.generate_swarm_parameters()
 hive.inject_behavior([rm_repo, github_clone])
-# hive.inject_code(rm_repo)
-# hive.inject_code(github_clone)
+
 hive.broadcast('python3 ' + direc + '/' +launch)
 print("Waiting For Leader... ")
 hive.monitor()
