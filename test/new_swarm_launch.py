@@ -37,7 +37,7 @@ swarm.describe()
 # json_input = mpu.io.read('swarm/test/'+'train.json')
 # splits = ({'images':json_input['images']})
 # variables = ({'index': ((0,size), 'unique')})
-statics = {}
+# statics = {}
 
 hive = Hive3(variable=variables, static=statics, split=splits, direc=direc)
 hive.gather(size=size,group=swarm_name)
