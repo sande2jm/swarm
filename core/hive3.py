@@ -11,7 +11,7 @@ from .hive_helper import split_json
 from threading import Thread
 
 class Hive3():
-	def __init__(self, variable=None, static=None, split=None, direc=None ):
+	def __init__(self, variable=None, static=None, split=None, direc = None ):
 		self.s3 = boto3.resource('s3', 'us-east-1')
 		self.ec2 = boto3.resource('ec2', 'us-east-1')
 		self.direc = direc
@@ -104,30 +104,27 @@ class Hive3():
 			i += 1
 
 	def generate_variable_parameters(self, params,i):
-		if self.config['variable']:
-			for k2,v2 in self.config['variable'].items():
-				num_range, specs = v2
-				a,b = num_range
-				if specs == 'unique':
-					params.update({k2:i})
-				elif specs == 'continuous_random':
-					params.update({k2:round(random.uniform(a,b),6)})
-				elif specs == 'discrete_random':
-					params.update({k2:random.randint(a,b)})
+		for k2,v2 in self.config['variable'].items():
+			num_range, specs = v2
+			a,b = num_range
+			if specs == 'unique':
+				params.update({k2:i})
+			elif specs == 'continuous_random':
+				params.update({k2:round(random.uniform(a,b),6)})
+			elif specs == 'discrete_random':
+				params.update({k2:random.randint(a,b)})
 
 	def generate_static_parameters(self,params):
-		if self.config['static']:
-			params.update(self.config['static'])
+		params.update(self.config['static'])
 
 	def generate_split_parameters(self,params,split,x):
-		if self.config['static']:
-			for k3,data in self.config['split'].items():
-				file_name = x[-4:]+ "_" +k3 +".json"
-				size = len(self.swarm)
-				n = int(len(data)/size)
-				#create files from split data in 
-				mpu.io.write(file_name, split)					
-				params.update({k3:file_name})
+		for k3,data in self.config['split'].items():
+			file_name = x[-4:]+ "_" +k3 +".json"
+			size = len(self.swarm)
+			n = int(len(data)/size)
+			#create files from split data in 
+			mpu.io.write(file_name, split)					
+			params.update({k3:file_name})
 
 	def inject_parameters(self):
 		"""Upload the instructions to AWS S3"""
