@@ -8,6 +8,7 @@ import time
 import random
 import mpu.io
 from .hive_helper import split_json 
+from threading import Thread
 
 class Hive3():
 	def __init__(self, variable={}, static={}, split={} ):
