@@ -140,7 +140,7 @@ class Hive3():
 			self.s3.meta.client.upload_file('parameters.txt', 'swarm-instructions', 'parameters.txt')
 			call(['rm', 'parameters.txt'])
 			for x,params in self.swarm.items():
-				file_name = params['images']
+				file_name = params['json']
 				self.s3.meta.client.upload_file(file_name, 'swarm-instructions', "data/"+file_name)
 
 	def inject_behavior(self, cmds):
