@@ -32,7 +32,6 @@ class Hive3():
 		start = time.clock()
 		d = set()
 		while len(d) < len(self.swarm):
-			print(len(d))
 			for x in self.queue.receive_messages(MaxNumberOfMessages=10):
 				message = json.loads(x.body)
 				if message['message'] == 'working':
