@@ -21,10 +21,10 @@ ec2_config = config['ec2_config']
 variables = config['variables']
 # splits = config['splits']
 
-s3_info = aws_services_info['s3']
-s3 = boto3.resource('s3')
+# s3_info = aws_services_info['s3']
+# s3 = boto3.resource('s3')
 
-s3.Bucket(s3_info['bucket']).download_file('train.json', 'swarm/test/train.json')
+# s3.Bucket(s3_info['bucket']).download_file('train.json', 'swarm/test/train.json')
 
 size = ec2_config['size']
 swarm_name = ec2_config['name']
