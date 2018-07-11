@@ -19,7 +19,7 @@ ec2_config:
   key: DLNAkey
   securityGroup: ['SSH']
   name: &name digit_recog
-  size: &size 4
+  size: &size 1
 
 worker_direc_name: *name
 launch: launch.py
