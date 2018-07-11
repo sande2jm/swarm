@@ -139,9 +139,10 @@ class Hive3():
 				json.dump(self.swarm, outfile)
 			self.s3.meta.client.upload_file('parameters.txt', 'swarm-instructions', 'parameters.txt')
 			call(['rm', 'parameters.txt'])
-			for x,params in self.swarm.items():
-				file_name = params['json']
-				self.s3.meta.client.upload_file(file_name, 'swarm-instructions', "data/"+file_name)
+			if len(self.config['static']) > 0:
+				for x,params in self.swarm.items():
+					file_name = params['json']
+					self.s3.meta.client.upload_file(file_name, 'swarm-instructions', "data/"+file_name)
 
 	def inject_behavior(self, cmds):
 		"""Setup all necessary dependencies for locust behavior"""
