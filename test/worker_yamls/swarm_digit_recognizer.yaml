@@ -7,12 +7,13 @@ ec2_config:
     - sudo apt-get update
     - sudo apt-get install -y python3-pip
     - pip3 install boto3
+    - pip3 install pandas
     - pip3 install keras
     - pip3 install numpy
     - pip3 install --upgrade pip
   role: arn:aws:iam::400029180276:instance-profile/worker_full_access
   region: us-east-1a
-  type: t2.micro
+  type: t2.small
   securityId: ['sg-eade92a1']
   key: DLNAkey
   securityGroup: ['SSH']
