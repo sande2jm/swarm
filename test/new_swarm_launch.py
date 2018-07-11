@@ -5,7 +5,7 @@ import boto3
 import mpu
 import yaml
 
-with open("swarm/test/worker_yamls/new_swarm_math_func.yaml", 'r') as stream:
+with open("swarm/test/worker_yamls/swarm_digit_recognizer.yaml", 'r') as stream:
 	config = yaml.load(stream)
 
 direc = config['worker_direc_name']
@@ -26,7 +26,7 @@ splits = config['splits']
 s3_info = aws_services_info['s3']
 s3 = boto3.resource('s3')
 
-s3.Bucket(s3_info['bucket']).download_file(splits['json'], 'swarm/test/'+splits['json'])
+# s3.Bucket(s3_info['bucket']).download_file(splits['json'], 'swarm/test/'+splits['json'])
 
 size = ec2_config['size']
 swarm_name = ec2_config['name']
@@ -36,8 +36,8 @@ swarm.init(dependencies=ec2_config['dependencies'])
 swarm.populate()
 swarm.describe()
 
-json_input = mpu.io.read('swarm/test/'+splits['json'])
-splits =({'json':json_input['images']})
+# json_input = mpu.io.read('swarm/test/'+splits['json'])
+# splits =({'json':json_input['images']})
 # splits = ({'images':json_input['images']})
 # variables = ({'index': ((0,size), 'unique')})
 # statics = {}
@@ -50,5 +50,5 @@ hive.inject_behavior([rm_repo, github_clone])
 hive.broadcast('python3 ' + direc + '/' +launch)
 print("Waiting For Leader... ")
 hive.monitor()
-
+print('Work Completed')
 

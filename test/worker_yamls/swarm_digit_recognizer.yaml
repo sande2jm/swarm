@@ -1,0 +1,42 @@
+---
+#a description of aws ec2 instance
+ec2_config:
+  ami: ami-a4dc46db
+  dependencies: 
+    - "#!/bin/bash" 
+    - sudo apt-get update
+    - sudo apt-get install -y python3-pip
+    - pip3 install boto3
+    - pip3 install keras
+    - pip3 install numpy
+    - pip3 install --upgrade pip
+  role: arn:aws:iam::400029180276:instance-profile/worker_full_access
+  region: us-east-1a
+  type: t2.micro
+  securityId: ['sg-eade92a1']
+  key: DLNAkey
+  securityGroup: ['SSH']
+  name: &name digit_recog
+  size: &size 4
+
+worker_direc_name: *name
+launch: launch.py
+github_account: sande2jm
+aws_services_info: 
+  s3:
+    bucket: swarm-instructions
+  sqs:
+    name: 'swarm.fifo'
+    region: us-east-1
+  dynamodb:
+    name: test
+    region: us-east-1
+  sns:
+    region: us-east-1
+statics: {batch_size: 32, epochs: 5, dropout_rate: .1, train: train.csv, test: test.csv}
+variables: { learning_rate: !!python/tuple [0,*size,continuous_random]}
+splits: {}
+
+
+
+
