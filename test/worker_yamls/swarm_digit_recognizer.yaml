@@ -34,7 +34,7 @@ aws_services_info:
   sns:
     region: us-east-1
 statics: {batch_size: 32, epochs: 5, dropout_rate: .1, train: train.csv, test: test.csv}
-variables: { learning_rate: !!python/tuple [0,*size,continuous_random]}
+variables: { learning_rate: !!python/tuple [0.001,0.1,continuous_random]}
 splits: {}
 
 
